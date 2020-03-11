@@ -15,12 +15,12 @@ var coordinatesSchema = new mongoose.Schema({
 
 var coordinates = mongoose.model("Coordinate", coordinatesSchema);
 
-app.get("/map", function(req, res){
+app.get("/", function(req, res){
     res.render("index.ejs");
 });
 
 //CREATE - add new coordinate to DB
-app.post("/map", function(req, res){
+app.post("/", function(req, res){
     // get data from form 
     var lat = req.body.lat;
     var lng = req.body.lng;
