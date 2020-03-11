@@ -1,0 +1,74 @@
+<%- include('../partials/header.ejs') %>
+<h1>Google Maps</h1>
+<div id="map"></div>
+<script type="text/javascript">
+    function initMap() {
+        // Map options
+        var options = {
+            zoom: 8,
+            center: {
+                lat: 45.4215,
+                lng: -75.6972
+            }
+        }
+        // New map
+        var map = new google.maps.Map(document.getElementById('map'), options);
+        // Listen for click on map
+        google.maps.event.addListener(map, 'click', function (event) {
+            // Add marker
+            addMarker({
+                coords: event.latLng
+            });
+        });
+
+        // Add Marker Function
+        function addMarker(props) {
+            var marker = new google.maps.Marker({
+                position: props.coords,
+                map: map,
+                //icon:props.iconImage
+            });
+
+            document.querySelector("#lat").value = marker.getPosition().lat();
+            document.querySelector("#lng").value = marker.getPosition().lng();
+
+            // Check for customicon
+            if (props.iconImage) {
+                // Set icon image
+                marker.setIcon(props.iconImage);
+            }
+
+            // Check content
+            if (props.content) {
+                var infoWindow = new google.maps.InfoWindow({
+                    //content: props.content
+                    content: marker.getPosition().lat() + " " + marker.getPosition().lng()
+                });
+
+                marker.addListener('click', function () {
+                    infoWindow.open(map, marker);
+                });
+            }
+        }      
+    }
+</script>
+<script type="text/javascript" async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxepA6YTyZNDEIrtUMHP8a95AgUiIDtOs&callback=initMap">
+    </script>
+<div> 
+    <form action="/map" method="POST">
+        <div>
+            <label for="lat">Latitude:</label>
+            <input type="text" id="lat" name="lat" value="">
+            <label for="lng">Longitude:</label>
+            <input type="text" id="lng" name="lng" value="">
+        </div>
+        <div class="form-group"></div>
+            <button class="btn btn-primary">Save coordinates</button>
+            <a class="btn btn-primary" href="/table">View saved coordinates</a>
+            <a class="btn btn-primary" href="/map">Clear map</a>
+        </div>
+    </form>
+</div>
+
+<%- include('../partials/footer.ejs') %>

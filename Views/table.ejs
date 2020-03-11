@@ -1,0 +1,30 @@
+<%- include('../partials/header.ejs') %>
+<div class="container">
+        <header class="jumbotron">
+            <div class="container">
+                <h1>Database Project</h1>
+                <p>All coordinates saved in the database</p>
+            </div>
+        </header>
+        
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Latitude</th>
+                    <th scope="col">Longitude</th>
+                </tr>
+            </thead>
+            <% coords.forEach(function(coordinate){ %>
+            <tbody>
+                <tr>
+                    <td><%= coordinate.lat %></td>
+                    <td><%= coordinate.lng %></td>
+                </tr>
+            <% }); %>
+            </tbody>
+       </table>
+       <p>
+            <a class="btn btn-primary btn-large" href="/map">Go to the map</a>
+        </p>
+   </div>
+   <%- include('../partials/footer.ejs') %>
