@@ -15,10 +15,13 @@ const coordinatesSchema = new mongoose.Schema({
 
 const coordinates = mongoose.model("Coordinate", coordinatesSchema);
 
-// app.get("/", function(req, res){
-//     res.render("index.ejs");
-// });
-app.get("/", (req, res) => res.render("index.ejs"));
+ app.get("/", function(req, res){
+	coordinates.find({}, (err, allCoordinates) => {
+		!!err ? console.log(err)
+			: res.render("index.ejs", { coords: allCoordinates });
+	});
+ });
+//app.get("/", (req, res) => res.render("index.ejs"));
 
 //CREATE - add new coordinate to DB
 app.post("/", function (req, res) {

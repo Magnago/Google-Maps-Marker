@@ -21,6 +21,34 @@
             });
         });
 
+        // <% coords.forEach(function(coordinate){ %>
+        //     <tbody>
+        //         <tr>
+        //             <td><%= coordinate.lat %></td>
+        //             <td><%= coordinate.lng %></td>
+        //         </tr>
+        // <% }); %>
+
+        // var markers = [{
+        //     coords: {
+        //       lat: 42.4668,
+        //       lng: -70.9495
+        //     },
+        //   },
+        //   {
+        //     coords: {
+        //       lat: 45.3503,
+        //       lng: -75.7559
+        //     },
+        //   },
+        // ];
+
+        // // Loop through markers
+        // for (var i = 0; i < markers.length; i++) {
+        //   // Add marker
+        //   addMarker(markers[i]);
+        // }        
+
         // Add Marker Function
         function addMarker(props) {
             var marker = new google.maps.Marker({
