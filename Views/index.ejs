@@ -19,31 +19,27 @@
             addMarker({
                 coords: event.latLng
             });
-        });
-
-        // <% coords.forEach(function(coordinate){ %>
-        //     <tbody>
-        //         <tr>
-        //             <td><%= coordinate.lat %></td>
-        //             <td><%= coordinate.lng %></td>
-        //         </tr>
-        // <% }); %>
+        }); 
+     
+        <% coords.forEach(function(coordinate){ %>
+                var markers = {
+                    coords: {
+                        lat: <%= coordinate.lat %>,
+                        lng: <%= coordinate.lng %>
+                    },
+                };
+            addMarker(markers);         
+        <% }); %>
 
         // var markers = [{
         //     coords: {
-        //       lat: 42.4668,
-        //       lng: -70.9495
-        //     },
-        //   },
-        //   {
-        //     coords: {
-        //       lat: 45.3503,
-        //       lng: -75.7559
+        //       lat: 45.40221883900106,
+        //       lng: -75.68072050781248
         //     },
         //   },
         // ];
 
-        // // Loop through markers
+        // Loop through markers
         // for (var i = 0; i < markers.length; i++) {
         //   // Add marker
         //   addMarker(markers[i]);
@@ -94,7 +90,7 @@
         <div class="form-group"></div>
             <button class="btn btn-primary">Save coordinates</button>
             <a class="btn btn-primary" href="/table">View saved coordinates</a>
-            <a class="btn btn-primary" href="/">Clear map</a>
+            <a class="btn btn-primary" href="/">Clear unsaved marks</a>
         </div>
     </form>
 </div>
